@@ -1,6 +1,8 @@
 package uitstart.uit.noteapp;
 
+import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
@@ -27,20 +29,23 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
     public static final int REQUES_UPDATE=1;
 
     public boolean is_actionmenu_mode=false;
+
     private Toolbar toolbar;
     private RecyclerView rvNote;
     private RecyclerView.LayoutManager layoutManager;
-    public NoteAdapter adater;
     private ArrayList<Note> list=new ArrayList<>();
     private ArrayList<Note> list_selected=new ArrayList<>();
     private int counter=0;
 
-    private PublicDateTime publicDateTime;
+    public PublicDateTime  publicDateTime;
 
     private ImageView imghome, imgback;
+
     private TextView tvAppName, tvCounter;
 
+    public NoteAdapter adater;
     public NoteDataBase noteDataBase;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,8 +128,39 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
     }
 
     private void deleteSelected() {
-        adater.removeListSelected(list_selected);
-        onActionModeOff();
+        final Dialog dialog_confirm=new Dialog(this);
+
+        dialog_confirm.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog_confirm.setContentView(R.layout.dialog_delete_cofirm);
+
+        Button btnConfirm = (Button) dialog_confirm.findViewById(R.id.btnConfirm);
+        Button btnClose= (Button) dialog_confirm.findViewById(R.id.btnClose);
+
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog_confirm.dismiss();
+            }
+        });
+
+        btnConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                adater.removeListSelected(list_selected);
+                onActionModeOff();
+                dialog_confirm.dismiss();
+
+            }
+        });
+
+        int width= (int) (getResources().getDisplayMetrics().widthPixels*0.90);
+        int height= (int) (getResources().getDisplayMetrics().heightPixels*0.30);
+
+        dialog_confirm.getWindow().setLayout(width,height);
+
+        dialog_confirm.show();
+
+
     }
 
     private void openTroLyAo() {
@@ -211,9 +247,11 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
 
     @Override
     public void onClick(View v) {
-        if(v.getId()==R.id.imgback){
-            onBackPressed();
+        int id=v.getId();
+        switch (id){
+            case R.id.imgback: onBackPressed(); break;
         }
+
     }
 
     @Override
@@ -275,8 +313,39 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
         dialog.show();
     }
 
-    public void deleteNote(int position){
-        adater.deleteNote(list.get(position));
+
+    public void deleteNote(final int position){
+        final Dialog dialog_confirm=new Dialog(this);
+
+        dialog_confirm.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog_confirm.setContentView(R.layout.dialog_delete_cofirm);
+
+        Button btnConfirm = (Button) dialog_confirm.findViewById(R.id.btnConfirm);
+        Button btnClose= (Button) dialog_confirm.findViewById(R.id.btnClose);
+
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                adater.notifyDataSetChanged();
+                dialog_confirm.dismiss();
+            }
+        });
+
+        btnConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                adater.deleteNote(list.get(position));
+                dialog_confirm.dismiss();
+            }
+        });
+
+        int width= (int) (getResources().getDisplayMetrics().widthPixels*0.90);
+        int height= (int) (getResources().getDisplayMetrics().heightPixels*0.30);
+
+        dialog_confirm.getWindow().setLayout(width,height);
+
+        dialog_confirm.show();
+
     }
 
     public void editNote(int postition){
@@ -285,4 +354,5 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
         intent.putExtra("send",n);
         startActivityForResult(intent,REQUES_UPDATE);
     }
+
 }

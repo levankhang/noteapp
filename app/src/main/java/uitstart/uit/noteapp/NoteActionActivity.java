@@ -21,6 +21,8 @@ public class NoteActionActivity extends AppCompatActivity implements View.OnClic
     public Button btnDone, btnCancel, btnTime, btnDate;
 
     PublicDateTime publicDateTime=new PublicDateTime(this);
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         initDisplay(savedInstanceState);
@@ -38,7 +40,8 @@ public class NoteActionActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void initThemeForAddNewNote() {
-        //TODO: nothing here haha
+        btnDate.setText(PublicDateTime.FORMAT_DATE.format(PublicDateTime.calendar.getTime()));
+        btnTime.setText(PublicDateTime.FORMAT_TIME.format(PublicDateTime.calendar.getTime()));
     }
 
     private void initThemeForEdit() {
