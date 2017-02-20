@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="Thêm ghi chú"
+    android:id="@+id/item_action_add"/>
+    <item android:title="Xem theo ngày"
+        android:id="@+id/item_action_date"/>
+    <item android:title="Xem tất cả"
+        android:id="@+id/item_action_all"/>
+    <item android:title="Phản hồi"
+        android:id="@+id/item_action_report"/>
+    <item android:title="Cài đặt"
+        android:id="@+id/item_action_set"/>
+</menu>

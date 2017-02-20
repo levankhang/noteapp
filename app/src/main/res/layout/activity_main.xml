@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="uitstart.uit.noteapp.MainActivity"
+    android:orientation="vertical"
+    android:background="#3c4e54">
+
+    <include
+        layout="@layout/toolbar_layout"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/rvNote">
+
+    </android.support.v7.widget.RecyclerView>
+</LinearLayout>
