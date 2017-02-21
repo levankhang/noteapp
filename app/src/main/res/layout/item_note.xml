@@ -54,7 +54,7 @@
             <LinearLayout
                 android:paddingLeft="10dp"
                 android:layout_width="0dp"
-                android:layout_weight="5"
+                android:layout_weight="5.4"
                 android:layout_height="match_parent"
                 android:weightSum="2"
                 android:orientation="vertical"
@@ -88,8 +88,9 @@
 
 
             <Spinner
+                android:gravity="right"
                 android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_weight="0.6"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|left"
                 android:id="@+id/spinner" />
