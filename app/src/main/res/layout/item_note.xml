@@ -13,7 +13,7 @@
         android:id="@+id/cardView"
         app:cardCornerRadius="5dp"
         app:cardElevation="1dp"
-        app:cardBackgroundColor="#6e416b81">
+        app:cardBackgroundColor="@color/item">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -38,6 +38,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
+                    android:textColor="@color/text"
                     android:text="12/06/1997"
                     android:id="@+id/tvDate"/>
                 <TextView
@@ -48,6 +49,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:text="20:30"
+                    android:textColor="@color/text"
                     android:id="@+id/tvTime"/>
             </LinearLayout>
 
@@ -60,20 +62,24 @@
                 android:orientation="vertical"
                 tools:ignore="RtlSymmetry">
                 <TextView
-                    android:textColor="#fbff00"
+                    android:textColor="#e9fdfd"
                     android:gravity="bottom"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:text="Tên sự kiện "
                     android:id="@+id/tvName"
+                    android:textSize="17dp"
+                    android:textStyle="bold"
                     android:singleLine="true"/>
                 <TextView
-                    android:textColor="#c4ceb1"
+                    android:textColor="@color/textDetail"
                     android:gravity="top"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
+                    android:textStyle="italic"
+                    android:textSize="@dimen/textDefault"
                     android:text="Nội dung sự kiện"
                     android:id="@+id/tvDetail"
                     android:singleLine="true"/>

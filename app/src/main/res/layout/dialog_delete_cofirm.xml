@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:weightSum="2"
     android:padding="5dp"
-    android:background="#1f2431">
+    android:background="@color/dialog">
 
     <TextView
         android:textStyle="bold"
@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:textColor="#ffffff"
+        android:textColor="@color/text"
         android:gravity="center_horizontal|top"
         android:text="Bạn có chắc muốn xóa?"/>
 
