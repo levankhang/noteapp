@@ -117,14 +117,18 @@ public class NoteActionActivity extends AppCompatActivity implements View.OnClic
     }
 
     private boolean isSameTime(String date, String time) {
-            ArrayList<Note> allNote=MainActivity.noteDataBase.getAllNote();
-            for(Note i:allNote){
-                if(i.getDate().equals(date)&&i.getTime().equals(time)) {
-                    Toast.makeText(this, "Lỗi đã có sự kiện trong thời gian này", Toast.LENGTH_LONG).show();
-                    return true;
-                }
+//        if(is_edit_action)
+//            return false;
+
+        ArrayList<Note> allNote=MainActivity.noteDataBase.getAllNote();
+        for(Note i:allNote){
+            if((is_edit_action?(i.getId()!=note.getId()):(true))&&i.getDate().equals(date)&&i.getTime().equals(time)) {
+                Toast.makeText(this, "Lỗi đã có sự kiện trong thời gian này", Toast.LENGTH_LONG).show();
+                return true;
             }
-            return false;
+        }
+
+        return false;
     }
 
     private void confirm() {

@@ -317,6 +317,7 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
 
 
     public void deleteNote(final int position){
+        adater.notifyDataSetChanged();
         final Dialog dialog_confirm=new Dialog(this);
 
         dialog_confirm.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -351,6 +352,7 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
     }
 
     public void editNote(int postition){
+        adater.notifyDataSetChanged();
         Note n=list.get(postition);
         Intent intent=new Intent(MainActivity.this,NoteActionActivity.class);
         intent.putExtra("send",n);

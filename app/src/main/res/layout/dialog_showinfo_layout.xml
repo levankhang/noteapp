@@ -3,7 +3,8 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="10.5"
-    android:padding="5dp">
+    android:padding="5dp"
+    android:background="#252e39">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -27,7 +28,7 @@
 
     <TextView
         android:text="Test tên"
-        android:textColor="#4acc23"
+        android:textColor="#ffffff"
         android:layout_margin="5dp"
         android:id="@+id/tvName"
         android:layout_width="match_parent"
@@ -49,7 +50,7 @@
 
         <TextView
         android:text="Nội dung test"
-        android:textColor="#58ca23"
+        android:textColor="#ffffff"
         android:layout_margin="5dp"
         android:id="@+id/tvDetail"
         android:layout_width="match_parent"
@@ -72,7 +73,7 @@
         android:weightSum="2"
         android:orientation="horizontal">
         <TextView
-            android:textColor="#5bff1a"
+            android:textColor="#ffffff"
             android:textStyle="bold"
             android:gravity="center_horizontal"
             android:text="21/12/1997"
@@ -81,7 +82,7 @@
             android:layout_height="match_parent"
             android:id="@+id/tvDate"/>
         <TextView
-            android:textColor="#5bff1a"
+            android:textColor="#ffffff"
             android:textStyle="bold"
             android:gravity="center_horizontal"
             android:text="20:30"
@@ -92,6 +93,7 @@
     </LinearLayout>
 
     <Button
+        android:textColor="#fff"
         android:background="#00ffffff"
         android:layout_width="match_parent"
         android:layout_height="0dp"

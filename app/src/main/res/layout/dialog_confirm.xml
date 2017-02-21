@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:weightSum="2"
     android:padding="5dp"
-    android:background="#1f2431">
+    android:background="#1f263d">
 
     <TextView
         android:id="@+id/tvConfirm"
