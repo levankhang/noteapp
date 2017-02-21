@@ -27,7 +27,7 @@
 
     <TextView
         android:text="Test tên"
-        android:textColor="#ffeb0a"
+        android:textColor="#4acc23"
         android:layout_margin="5dp"
         android:id="@+id/tvName"
         android:layout_width="match_parent"
@@ -49,7 +49,7 @@
 
         <TextView
         android:text="Nội dung test"
-        android:textColor="#ff8120"
+        android:textColor="#58ca23"
         android:layout_margin="5dp"
         android:id="@+id/tvDetail"
         android:layout_width="match_parent"
@@ -92,6 +92,7 @@
     </LinearLayout>
 
     <Button
+        android:background="#00ffffff"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1.5"

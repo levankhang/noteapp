@@ -1,5 +1,6 @@
 package uitstart.uit.noteapp;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +9,9 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class NoteActionActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -96,13 +100,67 @@ public class NoteActionActivity extends AppCompatActivity implements View.OnClic
     public void onClick(View v) {
         int id=v.getId();
         switch (id){
-            case R.id.btnCancel: finish(); break;
+            case R.id.btnCancel: MainActivity.adater.notifyDataSetChanged(); finish(); break;
             case R.id.btnDone:
-                createNoteResult();
-                sendNewNodeToMain(is_edit_action?MainActivity.REQUES_UPDATE:MainActivity.REQUES_NEWNODE); break;
+                if(isTrueData()&&!isSameTime(btnDate.getText().toString(),btnTime.getText().toString())) {
+                    if (is_edit_action)
+                        confirm();
+                    else {
+                        createNoteResult();
+                        sendNewNodeToMain(MainActivity.REQUES_NEWNODE);
+                    }
+                }
+                break;
             case R.id.btnTime: publicDateTime.changedTimeAction(false,true);break;
             case R.id.btnDate: publicDateTime.changedDateAction(false,true); break;
         }
+    }
+
+    private boolean isSameTime(String date, String time) {
+            ArrayList<Note> allNote=MainActivity.noteDataBase.getAllNote();
+            for(Note i:allNote){
+                if(i.getDate().equals(date)&&i.getTime().equals(time)) {
+                    Toast.makeText(this, "Lỗi đã có sự kiện trong thời gian này", Toast.LENGTH_LONG).show();
+                    return true;
+                }
+            }
+            return false;
+    }
+
+    private void confirm() {
+        final Dialog dialog_confirm=new Dialog(this);
+
+        dialog_confirm.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog_confirm.setContentView(R.layout.dialog_confirm);
+
+        Button btnConfirm = (Button) dialog_confirm.findViewById(R.id.btnConfirm);
+        Button btnClose= (Button) dialog_confirm.findViewById(R.id.btnClose);
+        TextView tvConfirm= (TextView) dialog_confirm.findViewById(R.id.tvConfirm);
+        tvConfirm.setText("Bạn có muốn lưu lại những thay đổi?");
+
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                initThemeForEdit();
+                MainActivity.adater.notifyDataSetChanged();
+                dialog_confirm.dismiss();
+            }
+        });
+
+        btnConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createNoteResult();
+                sendNewNodeToMain(MainActivity.REQUES_UPDATE);
+            }
+        });
+
+        int width= (int) (getResources().getDisplayMetrics().widthPixels*0.90);
+        int height= (int) (getResources().getDisplayMetrics().heightPixels*0.30);
+
+        dialog_confirm.getWindow().setLayout(width,height);
+
+        dialog_confirm.show();
     }
 
     private void createNoteResult() {
@@ -119,5 +177,21 @@ public class NoteActionActivity extends AppCompatActivity implements View.OnClic
             intentCalled.putExtra("result",note);
         setResult(REQUES_CODE,intentCalled);
         finish();
+    }
+
+    public boolean isTrueData(){
+        boolean isTrue=true;
+        if(edtName.getText().toString().equals("")){
+            edtName.setError("Tên ghi chú không được rỗng");
+            isTrue=false;
+        }
+
+        if(edtDetail.getText().toString().equals("")){
+            edtDetail.setError("Nội dung ghi chú không được rỗng");
+            isTrue=false;
+        }
+
+
+        return  isTrue;
     }
 }

@@ -1,8 +1,6 @@
 package uitstart.uit.noteapp;
 
-import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
@@ -18,6 +16,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -43,8 +42,8 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
 
     private TextView tvAppName, tvCounter;
 
-    public NoteAdapter adater;
-    public NoteDataBase noteDataBase;
+    public static NoteAdapter adater;
+    public static  NoteDataBase noteDataBase;
 
 
     @Override
@@ -131,7 +130,7 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
         final Dialog dialog_confirm=new Dialog(this);
 
         dialog_confirm.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog_confirm.setContentView(R.layout.dialog_delete_cofirm);
+        dialog_confirm.setContentView(R.layout.dialog_confirm);
 
         Button btnConfirm = (Button) dialog_confirm.findViewById(R.id.btnConfirm);
         Button btnClose= (Button) dialog_confirm.findViewById(R.id.btnClose);
@@ -268,15 +267,18 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(data!=null){
             Note note_result= (Note) data.getSerializableExtra("result");
-            if(resultCode==REQUES_NEWNODE){
-                noteDataBase.insertNote(note_result);
-                adater.refreshData();
-            }
 
-            if(requestCode==REQUES_UPDATE){
-                noteDataBase.updateNote(note_result);
-                adater.refreshData();
-            }
+                if (resultCode == REQUES_NEWNODE) {
+                    noteDataBase.insertNote(note_result);
+                    adater.refreshData();
+                    Toast.makeText(this,"Bạn vừa thêm 1 ghi chú mới",Toast.LENGTH_LONG).show();
+                }
+
+                if (requestCode == REQUES_UPDATE) {
+                    noteDataBase.updateNote(note_result);
+                    adater.refreshData();
+                    Toast.makeText(this,"Cập nhật thành công",Toast.LENGTH_LONG).show();
+                }
         }
     }
 
@@ -318,7 +320,7 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
         final Dialog dialog_confirm=new Dialog(this);
 
         dialog_confirm.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog_confirm.setContentView(R.layout.dialog_delete_cofirm);
+        dialog_confirm.setContentView(R.layout.dialog_confirm);
 
         Button btnConfirm = (Button) dialog_confirm.findViewById(R.id.btnConfirm);
         Button btnClose= (Button) dialog_confirm.findViewById(R.id.btnClose);
@@ -354,5 +356,6 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
         intent.putExtra("send",n);
         startActivityForResult(intent,REQUES_UPDATE);
     }
+
 
 }
