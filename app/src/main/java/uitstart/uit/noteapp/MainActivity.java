@@ -1,5 +1,6 @@
 package uitstart.uit.noteapp;
 
+import android.app.AlarmManager;
 import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
@@ -18,7 +19,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import static android.view.View.GONE;
 
@@ -44,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
 
     public static NoteAdapter adater;
     public static NoteDataBase noteDataBase;
+    public static AlarmManager alarmManager;
 
 
     @Override
@@ -56,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
         addEvents();
         loadData();
         publicDateTime =new PublicDateTime();
+        alarmManager= (AlarmManager) getSystemService(ALARM_SERVICE);
     }
 
     private void loadData() {
@@ -145,6 +151,11 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                //xóa alarm
+                for(Note i:list_selected)
+                    alarmManager.cancel(i.createPendingIntent(MainActivity.this));
+
                 adater.removeListSelected(list_selected);
                 onActionModeOff();
                 dialog_confirm.dismiss();
@@ -269,50 +280,40 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
             Note note_result= (Note) data.getSerializableExtra("result");
 
                 if (resultCode == REQUES_NEWNODE) {
-                    noteDataBase.insertNote(note_result);
+                    long id=noteDataBase.insertNote(note_result);
                     adater.refreshData();
+
+                    note_result.setId(Integer.parseInt(id+""));
+
+                    //test thêm alarm
+                    alarmManager.set(AlarmManager.RTC_WAKEUP,
+                            createCalendar(note_result.getDate(),note_result.getTime()).getTimeInMillis(),
+                            note_result.createPendingIntent(this));
+
                     Toast.makeText(this,"Bạn vừa thêm 1 ghi chú mới",Toast.LENGTH_LONG).show();
                 }
 
                 if (requestCode == REQUES_UPDATE) {
+                    Note n= (Note) noteDataBase.getNote(note_result.getId());
+
+                    // sửa lại thông tin alarm
+                    alarmManager.cancel(n.createPendingIntent(MainActivity.this));
+                    alarmManager.set(AlarmManager.RTC_WAKEUP,
+                            createCalendar(note_result.getDate(),note_result.getTime()).getTimeInMillis(),
+                            note_result.createPendingIntent(this));
+
                     noteDataBase.updateNote(note_result);
                     adater.refreshData();
+
                     Toast.makeText(this,"Cập nhật thành công",Toast.LENGTH_LONG).show();
                 }
         }
     }
 
     public void showInfoOfNote(int adapterPosition) {
-        Note n=list.get(adapterPosition);
-        final Dialog dialog=new Dialog(this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.dialog_showinfo_layout);
-        dialog.setCancelable(true);
-
-        int width= (int) (getResources().getDisplayMetrics().widthPixels*0.90);
-        int height= (int) (getResources().getDisplayMetrics().heightPixels*0.70);
-        dialog.getWindow().setLayout(width,height);
-
-        TextView tvName= (TextView) dialog.findViewById(R.id.tvName);
-        TextView tvDetail= (TextView) dialog.findViewById(R.id.tvDetail);
-        TextView tvTime= (TextView) dialog.findViewById(R.id.tvTime);
-        TextView tvDate= (TextView) dialog.findViewById(R.id.tvDate);
-        Button btnClose= (Button) dialog.findViewById(R.id.btnClose);
-
-        tvName.setText(n.getName());
-        tvDetail.setText(n.getDetai());
-        tvTime.setText(n.getTime());
-        tvDate.setText(n.getDate());
-
-
-        btnClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-
-        dialog.show();
+        Intent showInfoIntent=new Intent(MainActivity.this,ShowInfoActivity.class);
+        showInfoIntent.putExtra("note",list.get(adapterPosition));
+        startActivity(showInfoIntent);
     }
 
 
@@ -337,7 +338,12 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                //test xóa alarm
+                alarmManager.cancel(list.get(position).createPendingIntent(MainActivity.this));
+
                 adater.deleteNote(list.get(position));
+
                 dialog_confirm.dismiss();
             }
         });
@@ -359,5 +365,18 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
         startActivityForResult(intent,REQUES_UPDATE);
     }
 
+    public Calendar createCalendar(String date, String time){
+        Calendar calendar=Calendar.getInstance();
+        Date d=null;
+        try {
+            d=PublicDateTime.FORMAT_CALENDAR.parse(date+" "+time);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        calendar.setTime(d);
+        calendar.set(Calendar.SECOND,0);
+
+        return calendar;
+    }
 
 }

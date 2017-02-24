@@ -18,7 +18,12 @@
         <activity
             android:name=".NoteActionActivity"
             android:theme="@style/Base.Theme.AppCompat.Light.Dialog" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
+
+        <receiver android:name=".BroadCastReceiver" />
+
+        <activity android:name=".ShowInfoActivity"
+            android:theme="@style/Base.Theme.AppCompat.Light.Dialog"></activity>
     </application>
 
 </manifest>

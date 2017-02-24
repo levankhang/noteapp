@@ -1,5 +1,9 @@
 package uitstart.uit.noteapp;
 
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+
 import java.io.Serializable;
 
 /**
@@ -66,5 +70,16 @@ public class Note implements Serializable {
 
     public void setDetai(String detai) {
         this.detai = detai;
+    }
+
+    public PendingIntent createPendingIntent(Context context){
+        Intent intent=new Intent(context,BroadCastReceiver.class);
+        intent.putExtra("note",this);
+        return PendingIntent.getBroadcast(context,id,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+    }
+
+    @Override
+    public String toString() {
+        return id+" "+date+" "+time+" "+name+" "+detai;
     }
 }

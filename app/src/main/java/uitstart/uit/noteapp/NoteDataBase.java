@@ -37,19 +37,27 @@ public class NoteDataBase extends SQLiteOpenHelper{
         db.execSQL("DROP TABLE IF EXISTS "+TABLE_NAME);
         onCreate(db);
     }
-    public boolean insertNote(Note n){
+    public long insertNote(Note n){
         ContentValues values=new ContentValues();
         values.put(NOTE_COLUMN_DATE,n.getDate());
         values.put(NOTE_COLUMN_TIME,n.getTime());
         values.put(NOTE_COLUMN_NAME,n.getName());
         values.put(NOTE_COLUMN_DETAIL,n.getDetai());
-        getWritableDatabase().insert(TABLE_NAME,null,values);
-        return true;
+        return getWritableDatabase().insert(TABLE_NAME,null,values);
     }
 
-    public Cursor getNote(int id){
-        String getNote="SELECT FROM "+TABLE_NAME+" WHERE ID="+id;
-        return getReadableDatabase().rawQuery(getNote,null);
+    public Note getNote(int id){
+        String getNote="SELECT * FROM "+TABLE_NAME+" WHERE ID="+id;
+
+        Cursor cursor=getReadableDatabase().rawQuery(getNote,null);
+        while (cursor.moveToNext()) {
+            String date = cursor.getString(cursor.getColumnIndex(NOTE_COLUMN_DATE));
+            String time = cursor.getString(cursor.getColumnIndex(NOTE_COLUMN_TIME));
+            String name = cursor.getString(cursor.getColumnIndex(NOTE_COLUMN_NAME));
+            String detail = cursor.getString(cursor.getColumnIndex(NOTE_COLUMN_DETAIL));
+            return new Note(id, date, time, name, detail);
+        }
+        return null;
     }
 
     public ArrayList<Note> getNote(String dateSelected){
@@ -94,4 +102,5 @@ public class NoteDataBase extends SQLiteOpenHelper{
         }
         return arrayListAllNote;
     }
+
 }
