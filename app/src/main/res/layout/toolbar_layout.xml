@@ -17,20 +17,21 @@
             android:src="@drawable/ic_back"
             android:id="@+id/imgback"
             android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_weight="0.5"
             android:layout_height="match_parent"
             android:visibility="gone"/>
         <ImageView
+            android:layout_gravity="left"
             android:src="@drawable/ic_home"
             android:id="@+id/imghome"
             android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_weight="0.5"
             android:layout_height="match_parent" />
 
         <TextView
-            android:gravity="center_vertical"
+            android:gravity="center"
             android:layout_width="0dp"
-            android:layout_weight="4"
+            android:layout_weight="4.5"
             android:layout_height="match_parent"
             android:text="Ghi chú"
             android:textSize="18dp"
@@ -39,9 +40,9 @@
             android:id="@+id/tvAppName"/>
 
         <TextView
-            android:gravity="center_vertical"
+            android:gravity="center"
             android:layout_width="0dp"
-            android:layout_weight="4"
+            android:layout_weight="4.5"
             android:layout_height="match_parent"
             android:text="Có 0 item được chọn"
             android:textSize="18dp"

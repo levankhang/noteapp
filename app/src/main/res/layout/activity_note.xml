@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="uitstart.uit.noteapp.NoteActionActivity"
     android:orientation="vertical"
-    android:background="#256d71"
+    android:background="#3da2a7"
     android:layout_weight="15"
     android:padding="5dp">
 
@@ -113,7 +113,7 @@
         android:orientation="horizontal"
         android:weightSum="2">
         <Button
-            android:textColor="#39ff77"
+            android:textColor="#ffffff"
             android:layout_margin="2dp"
             android:background="@drawable/border"
             android:id="@+id/btnDate"
@@ -122,7 +122,7 @@
             android:layout_height="match_parent"
             android:text="21/10/2017"/>
         <Button
-            android:textColor="#39ff77"
+            android:textColor="#ffffff"
             android:layout_margin="2dp"
             android:background="@drawable/border"
             android:id="@+id/btnTime"

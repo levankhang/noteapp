@@ -24,7 +24,7 @@ public class NoteActionActivity extends AppCompatActivity implements View.OnClic
     private TextView tvNameMode;
     public Button btnDone, btnCancel, btnTime, btnDate;
 
-    PublicDateTime publicDateTime=new PublicDateTime(this);
+    PublicDateTime publicDateTime=new PublicDateTime();
 
 
     @Override
@@ -111,14 +111,12 @@ public class NoteActionActivity extends AppCompatActivity implements View.OnClic
                     }
                 }
                 break;
-            case R.id.btnTime: publicDateTime.changedTimeAction(false,true);break;
-            case R.id.btnDate: publicDateTime.changedDateAction(false,true); break;
+            case R.id.btnTime: publicDateTime.changedTime(this); break;
+            case R.id.btnDate: publicDateTime.changeDate(this); break;
         }
     }
 
     private boolean isSameTime(String date, String time) {
-//        if(is_edit_action)
-//            return false;
 
         ArrayList<Note> allNote=MainActivity.noteDataBase.getAllNote();
         for(Note i:allNote){

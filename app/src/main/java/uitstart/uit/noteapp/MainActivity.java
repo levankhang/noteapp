@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
     private TextView tvAppName, tvCounter;
 
     public static NoteAdapter adater;
-    public static  NoteDataBase noteDataBase;
+    public static NoteDataBase noteDataBase;
 
 
     @Override
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
         initRecyclerViewNote();
         addEvents();
         loadData();
-        publicDateTime =new PublicDateTime(this);
+        publicDateTime =new PublicDateTime();
     }
 
     private void loadData() {
@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
     }
 
     private void viewNoteOfDay() {
-        publicDateTime.changedDateAction(true,false);
+        publicDateTime.viewNoteOfDay(this);
     }
 
     private void openSetting() {

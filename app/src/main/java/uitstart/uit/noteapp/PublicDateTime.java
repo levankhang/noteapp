@@ -1,5 +1,6 @@
 package uitstart.uit.noteapp;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.widget.DatePicker;
@@ -21,20 +22,11 @@ public class PublicDateTime {
 
     public static  Calendar calendar;
 
-    private MainActivity mainActivity;
-    private NoteActionActivity noteActionActivity;
-
-    public PublicDateTime(MainActivity mainActivity) {
-        this.mainActivity=mainActivity;
+    public PublicDateTime() {
         calendar=Calendar.getInstance();
     }
 
-    public PublicDateTime(NoteActionActivity noteActionActivity){
-        this.noteActionActivity = noteActionActivity;
-        calendar=Calendar.getInstance();
-    }
-
-    public void changedDateAction(final boolean isFromMainActivity, final boolean isFromNoteActionActivity){
+    public void changeDate(final NoteActionActivity noteActionActivity){
 
         DatePickerDialog.OnDateSetListener onDateSetListener=new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -43,17 +35,11 @@ public class PublicDateTime {
                 calendar.set(Calendar.MONTH,month);
                 calendar.set(Calendar.DAY_OF_MONTH,dayOfMonth);
 
-                if(isFromMainActivity)
-                    mainActivity.adater.refreshData(FORMAT_DATE.format(calendar.getTime()));
-
-                if(isFromNoteActionActivity)
-                    noteActionActivity.btnDate.setText(FORMAT_DATE.format(calendar.getTime()));
+                noteActionActivity.btnDate.setText(FORMAT_DATE.format(calendar.getTime()));
             }
         };
 
-        initCalendar(isFromMainActivity, isFromNoteActionActivity);
-
-        DatePickerDialog datePickerDialog=new DatePickerDialog(isFromMainActivity ? mainActivity: noteActionActivity,onDateSetListener,
+        DatePickerDialog datePickerDialog=new DatePickerDialog(noteActionActivity,onDateSetListener,
                 calendar.get(Calendar.YEAR),
                 calendar.get(Calendar.MONTH),
                 calendar.get(Calendar.DAY_OF_MONTH)
@@ -61,33 +47,17 @@ public class PublicDateTime {
         datePickerDialog.show();
     }
 
-    private void initCalendar(boolean isFromMainActivity, boolean isFromNoteActionActivity) {
-        if(isFromNoteActionActivity)
-            try {
-                Date d=null;
-                d=FORMAT_CALENDAR.parse(noteActionActivity.btnDate.getText().toString()+" "+noteActionActivity.btnTime.getText().toString());
-                calendar.setTime(d);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-        else calendar=Calendar.getInstance();
-    }
 
-
-    // But default is from NoteActionActivity
-    public void changedTimeAction(final boolean isFromMainActivity, final boolean isFromNoteActionActivity){
+    public void changedTime(final NoteActionActivity noteActionActivity){
         TimePickerDialog.OnTimeSetListener onTimeSetListener=new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                 calendar.set(Calendar.HOUR_OF_DAY,hourOfDay);
                 calendar.set(Calendar.MINUTE,minute);
                 calendar.set(Calendar.SECOND,0);
-
-                if(isFromNoteActionActivity)
-                    noteActionActivity.btnTime.setText(FORMAT_TIME.format(calendar.getTime()));
+                noteActionActivity.btnTime.setText(FORMAT_TIME.format(calendar.getTime()));
             }
         };
-        initCalendar(isFromMainActivity,isFromNoteActionActivity);
 
         TimePickerDialog timePickerDialog=new TimePickerDialog(noteActionActivity,onTimeSetListener,
                 calendar.get(Calendar.HOUR_OF_DAY),
@@ -96,4 +66,24 @@ public class PublicDateTime {
         timePickerDialog.show();
     }
 
+
+    public void viewNoteOfDay(final MainActivity mainActivity) {
+        DatePickerDialog.OnDateSetListener onDateSetListener=new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                calendar.set(Calendar.YEAR,year);
+                calendar.set(Calendar.MONTH,month);
+                calendar.set(Calendar.DAY_OF_MONTH,dayOfMonth);
+
+                    mainActivity.adater.refreshData(FORMAT_DATE.format(calendar.getTime()));
+            }
+        };
+
+        DatePickerDialog datePickerDialog=new DatePickerDialog(mainActivity,onDateSetListener,
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
+        );
+        datePickerDialog.show();
+    }
 }
