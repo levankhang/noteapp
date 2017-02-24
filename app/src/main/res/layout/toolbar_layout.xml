@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:minHeight="?attr/actionBarSize"
-    android:background="#364d50"
+    android:background="#1e3235"
     app:theme="@style/Base.ThemeOverlay.AppCompat.ActionBar"
     android:id="@+id/toolbar">
 
@@ -44,7 +44,7 @@
             android:layout_width="0dp"
             android:layout_weight="4.5"
             android:layout_height="match_parent"
-            android:text="Có 0 item được chọn"
+            android:text="Đã chọn 0 ghi chú"
             android:textSize="18dp"
             android:textStyle="bold"
             android:id="@+id/tvCounter"

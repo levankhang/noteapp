@@ -89,9 +89,10 @@ public class NoteActionActivity extends AppCompatActivity implements View.OnClic
         setContentView(R.layout.activity_note);
 
         int width= (int) (getResources().getDisplayMetrics().widthPixels*0.90);
-        int height= (int) (getResources().getDisplayMetrics().heightPixels*0.90);
+        int height= (int) (getResources().getDisplayMetrics().heightPixels*0.8);
 
         getWindow().setLayout(width,height);
+        getWindow().setBackgroundDrawableResource(R.color.transparent);
 
         super.onCreate(savedInstanceState);
     }
@@ -134,6 +135,7 @@ public class NoteActionActivity extends AppCompatActivity implements View.OnClic
 
         dialog_confirm.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog_confirm.setContentView(R.layout.dialog_confirm);
+        dialog_confirm.getWindow().setBackgroundDrawableResource(R.color.transparent);
 
         Button btnConfirm = (Button) dialog_confirm.findViewById(R.id.btnConfirm);
         Button btnClose= (Button) dialog_confirm.findViewById(R.id.btnClose);
@@ -157,8 +159,8 @@ public class NoteActionActivity extends AppCompatActivity implements View.OnClic
             }
         });
 
-        int width= (int) (getResources().getDisplayMetrics().widthPixels*0.90);
-        int height= (int) (getResources().getDisplayMetrics().heightPixels*0.30);
+        int width= (int) (getResources().getDisplayMetrics().widthPixels*0.70);
+        int height= (int) (getResources().getDisplayMetrics().heightPixels*0.20);
 
         dialog_confirm.getWindow().setLayout(width,height);
 

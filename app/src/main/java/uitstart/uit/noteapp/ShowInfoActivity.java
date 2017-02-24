@@ -47,9 +47,10 @@ public class ShowInfoActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_show_info);
 
         int width= (int) (getResources().getDisplayMetrics().widthPixels*0.90);
-        int height= (int) (getResources().getDisplayMetrics().heightPixels*0.90);
+        int height= (int) (getResources().getDisplayMetrics().heightPixels*0.80);
 
         getWindow().setLayout(width,height);
+        getWindow().setBackgroundDrawableResource(R.color.transparent);
 
         super.onCreate(savedInstanceState);
     }

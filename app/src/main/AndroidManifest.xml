@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="uitstart.uit.noteapp">
 
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -20,7 +22,12 @@
             android:theme="@style/Base.Theme.AppCompat.Light.Dialog" />
         <activity android:name=".MainActivity" />
 
-        <receiver android:name=".BroadCastReceiver" />
+        <receiver android:name=".BroadCastReceiver"/>
+        <receiver android:name=".ActionBootComplete">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"></action>
+            </intent-filter>
+        </receiver>
 
         <activity android:name=".ShowInfoActivity"
             android:theme="@style/Base.Theme.AppCompat.Light.Dialog"></activity>

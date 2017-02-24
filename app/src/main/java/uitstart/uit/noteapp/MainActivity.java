@@ -137,6 +137,7 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
 
         dialog_confirm.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog_confirm.setContentView(R.layout.dialog_confirm);
+        dialog_confirm.getWindow().setBackgroundDrawableResource(R.color.transparent);
 
         Button btnConfirm = (Button) dialog_confirm.findViewById(R.id.btnConfirm);
         Button btnClose= (Button) dialog_confirm.findViewById(R.id.btnClose);
@@ -163,8 +164,8 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
             }
         });
 
-        int width= (int) (getResources().getDisplayMetrics().widthPixels*0.90);
-        int height= (int) (getResources().getDisplayMetrics().heightPixels*0.30);
+        int width= (int) (getResources().getDisplayMetrics().widthPixels*0.70);
+        int height= (int) (getResources().getDisplayMetrics().heightPixels*0.20);
 
         dialog_confirm.getWindow().setLayout(width,height);
 
@@ -252,7 +253,7 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
     }
 
     private void updateCounter(int counter){
-        tvCounter.setText("Có "+counter+" item được chọn");
+        tvCounter.setText("Đã chọn "+counter+" ghi chú");
     }
 
     @Override
@@ -290,7 +291,7 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
                             createCalendar(note_result.getDate(),note_result.getTime()).getTimeInMillis(),
                             note_result.createPendingIntent(this));
 
-                    Toast.makeText(this,"Bạn vừa thêm 1 ghi chú mới",Toast.LENGTH_LONG).show();
+                    Toast.makeText(this,"Bạn vừa thêm một ghi chú mới",Toast.LENGTH_LONG).show();
                 }
 
                 if (requestCode == REQUES_UPDATE) {
@@ -305,7 +306,7 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
                     noteDataBase.updateNote(note_result);
                     adater.refreshData();
 
-                    Toast.makeText(this,"Cập nhật thành công",Toast.LENGTH_LONG).show();
+                    Toast.makeText(this,"Cập nhật ghi chú thành công",Toast.LENGTH_LONG).show();
                 }
         }
     }
@@ -323,6 +324,7 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
 
         dialog_confirm.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog_confirm.setContentView(R.layout.dialog_confirm);
+        dialog_confirm.getWindow().setBackgroundDrawableResource(R.color.transparent);
 
         Button btnConfirm = (Button) dialog_confirm.findViewById(R.id.btnConfirm);
         Button btnClose= (Button) dialog_confirm.findViewById(R.id.btnClose);
@@ -348,8 +350,8 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
             }
         });
 
-        int width= (int) (getResources().getDisplayMetrics().widthPixels*0.90);
-        int height= (int) (getResources().getDisplayMetrics().heightPixels*0.30);
+        int width= (int) (getResources().getDisplayMetrics().widthPixels*0.70);
+        int height= (int) (getResources().getDisplayMetrics().heightPixels*0.20);
 
         dialog_confirm.getWindow().setLayout(width,height);
 

@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:weightSum="10.5"
     android:padding="5dp"
-    android:background="#367899">
+    android:background="@drawable/border">
     <TextView
         android:textColor="#ffffff"
         android:layout_width="match_parent"

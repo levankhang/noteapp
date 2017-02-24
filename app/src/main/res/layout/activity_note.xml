@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="uitstart.uit.noteapp.NoteActionActivity"
     android:orientation="vertical"
-    android:background="#3da2a7"
+    android:background="@drawable/border"
     android:layout_weight="15"
     android:padding="5dp">
 

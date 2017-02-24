@@ -3,8 +3,8 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="2"
-    android:padding="5dp"
-    android:background="#28a5b6">
+    android:padding="10dp"
+    android:background="@drawable/border">
 
     <TextView
         android:id="@+id/tvConfirm"
@@ -28,21 +28,22 @@
             android:textColor="#ffffff"
             android:layout_gravity="bottom"
             android:background="#00ffffff"
+            android:id="@+id/btnClose"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Không"/>
+        <Button
+            android:textColor="#ffffff"
+            android:layout_gravity="bottom"
+            android:background="#00ffffff"
             android:id="@+id/btnConfirm"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="Có"/>
 
-        <Button
-            android:textColor="#ffffff"
-            android:layout_gravity="bottom"
-            android:background="#00ffffff"
-            android:id="@+id/btnClose"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="Không"/>
+
     </LinearLayout>
 
 </LinearLayout>
