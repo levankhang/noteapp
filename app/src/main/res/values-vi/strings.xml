@@ -1,0 +1,55 @@
+<resources>
+
+
+    <string name="app_name">Ứng dụng ghi chú</string>
+
+
+    <!--Text of Activity Note and Activity Info Of Note-->
+
+    <string name="activity_note_add">Thêm ghi chú mới</string>
+    <string name="activity_note_edit">Chỉnh sửa ghi chú</string>
+    <string name="name_of_note">Tên:</string>
+    <string name="detail_of_note">Chi tiết</string>
+    <string name="when_event_start">Thông tin về thời gian</string>
+    <string name="set_date">Cài đặt ngày</string>
+    <string name="set_time">Cài đặt giờ</string>
+    <string name="finish">Hoàn tất</string>
+    <string name="cancel">Hủy bỏ</string>
+    <string name="activity_info">Thông tin ghi chú</string>
+
+    <!--Text of Confirm dialog-->
+
+    <string name="confirm_delete">Bạn có chắc muốn xóa?</string>
+    <string name="yes">Có</string>
+    <string name="no">Không</string>
+
+    <string name="confirm_save">Bạn có muốn lưu lại sự thay đổi</string>
+
+
+    <!--Text of Spinner-->
+    <string name="edit_action">Sửa ghi chú</string>
+    <string name="delete_action">Xóa ghi chú</string>
+
+    <!--Text of Toolbar-->
+    <string name="count">Số mục đã chọn: </string>
+
+    <!--Text of Menu-->
+    <string name="note_of_day">Xem ghi chú theo ngày</string>
+    <string name="all_note">Xem tất cả ghi chú</string>
+    <string name="setting">Cài đặt</string>
+    <string name="report">Phản hồi</string>
+    <string name="add">Thêm ghi chú mới</string>
+    <string name="unselect">Bỏ chọn tất cả</string>
+    <string name="select_all">Chọn tất cả</string>
+    <string name="delete_select">Xóa mục đã chọn</string>
+
+    <!--Text of Toast-->
+    <string name="added">Bạn vừa thêm một ghi chú</string>
+    <string name="updated">Cập nhật thành công</string>
+
+
+    <!--Text of Error-->
+    <string name="same_time">Bạn đã có sự kiện trong thời gian này</string>
+    <string name="name_empty">Tên không được rỗng</string>
+    <string name="detail_empty">Chi tiết không được rỗng</string>
+</resources>
