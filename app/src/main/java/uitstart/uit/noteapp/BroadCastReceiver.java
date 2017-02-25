@@ -29,7 +29,7 @@ public class BroadCastReceiver extends BroadcastReceiver {
         //Uri uri=Uri.parse("android.resource://"+context.getPackageName()+"/"+R.raw.sound);
 
         NotificationCompat.Builder builder=new NotificationCompat.Builder(context);
-        builder.setContentTitle("Sự kiện đang diễn ra: "+n.getName());
+        builder.setContentTitle("Thông báo từ NoteApp");
         builder.setContentText("Nhấn vào để xem chi tiết!!!");
         builder.setSmallIcon(R.drawable.ic_notification);
         builder.setContentIntent(pendingIntentShowInfo);
