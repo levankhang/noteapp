@@ -1,3 +1,55 @@
 <resources>
-    <string name="app_name">NoteApp</string>
+
+
+    <string name="app_name">Note Application</string>
+
+
+    <!--Text of Activity Note and Activity Info Of Note-->
+
+    <string name="activity_note_add">Add new note</string>
+    <string name="activity_note_edit">Edit this note</string>
+    <string name="name_of_note">Name of note</string>
+    <string name="detail_of_note">Detail of note</string>
+    <string name="when_event_start">When the event starts</string>
+    <string name="set_date">Set date</string>
+    <string name="set_time">Set time</string>
+    <string name="finish">Finish</string>
+    <string name="cancel">Cancel</string>
+    <string name="activity_info">Information of note</string>
+
+    <!--Text of Confirm dialog-->
+
+    <string name="confirm_delete">Are you sure to delete this note</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+    <string name="confirm_save">Are you sure to save the changes</string>
+
+
+    <!--Text of Spinner-->
+    <string name="edit_action">Edit this note</string>
+    <string name="delete_action">Delete this note</string>
+
+    <!--Text of Toolbar-->
+    <string name="count">Selected items: </string>
+
+    <!--Text of Menu-->
+    <string name="note_of_day">View notes of day</string>
+    <string name="all_note">View all notes</string>
+    <string name="setting">Setting</string>
+    <string name="report">Report</string>
+    <string name="add">Add new node</string>
+    <string name="unselect">Unselect all</string>
+    <string name="select_all">Select all</string>
+    <string name="delete_select">Delete notes selected</string>
+
+    <!--Text of Toast-->
+    <string name="added">You just add a new note</string>
+    <string name="updated">You have successfully updated notes</string>
+
+
+    <!--Text of Error-->
+    <string name="same_time">You are got an event at this time</string>
+    <string name="name_empty">Name of note not empty</string>
+    <string name="detail_empty">Detail of note not empty</string>
 </resources>

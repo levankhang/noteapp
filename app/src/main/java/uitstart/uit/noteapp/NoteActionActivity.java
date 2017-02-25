@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 public class NoteActionActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -53,7 +54,7 @@ public class NoteActionActivity extends AppCompatActivity implements View.OnClic
         edtDetail.setText(note.getDetai());
         btnDate.setText(note.getDate());
         btnTime.setText(note.getTime());
-        tvNameMode.setText("Chỉnh sửa ghi chú");
+        tvNameMode.setText(getResources().getString(R.string.activity_note_edit));
     }
 
     private void initMode() {
@@ -122,7 +123,7 @@ public class NoteActionActivity extends AppCompatActivity implements View.OnClic
         ArrayList<Note> allNote=MainActivity.noteDataBase.getAllNote();
         for(Note i:allNote){
             if((is_edit_action?(i.getId()!=note.getId()):(true))&&i.getDate().equals(date)&&i.getTime().equals(time)) {
-                Toast.makeText(this, "Lỗi đã có sự kiện trong thời gian này", Toast.LENGTH_LONG).show();
+                Toast.makeText(this,getResources().getString(R.string.same_time), Toast.LENGTH_LONG).show();
                 return true;
             }
         }
@@ -140,7 +141,7 @@ public class NoteActionActivity extends AppCompatActivity implements View.OnClic
         Button btnConfirm = (Button) dialog_confirm.findViewById(R.id.btnConfirm);
         Button btnClose= (Button) dialog_confirm.findViewById(R.id.btnClose);
         TextView tvConfirm= (TextView) dialog_confirm.findViewById(R.id.tvConfirm);
-        tvConfirm.setText("Bạn có muốn lưu lại những thay đổi?");
+        tvConfirm.setText(getResources().getString(R.string.confirm_save));
 
         btnClose.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -186,12 +187,12 @@ public class NoteActionActivity extends AppCompatActivity implements View.OnClic
     public boolean isTrueData(){
         boolean isTrue=true;
         if(edtName.getText().toString().equals("")){
-            edtName.setError("Tên ghi chú không được rỗng");
+            edtName.setError(getResources().getString(R.string.name_empty));
             isTrue=false;
         }
 
         if(edtDetail.getText().toString().equals("")){
-            edtDetail.setError("Nội dung ghi chú không được rỗng");
+            edtDetail.setError(getResources().getString(R.string.detail_empty));
             isTrue=false;
         }
 

@@ -11,7 +11,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:textStyle="bold"
-        android:text="Thông tin ghi chú"
+        android:text="@string/activity_info"
         android:gravity="center"
         android:textSize="20sp"/>
     <TextView
@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.5"
-        android:text="Tên:"/>
+        android:text="@string/name_of_note"/>
 
     <ScrollView
         android:background="@drawable/border"
@@ -29,7 +29,7 @@
         android:layout_weight="2">
 
     <TextView
-        android:text="Test tên"
+        android:text="@string/name_of_note"
         android:textColor="#ffffff"
         android:layout_margin="5dp"
         android:id="@+id/tvName"
@@ -43,7 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.5"
-        android:text="Chi tiết:"/>
+        android:text="@string/detail_of_note"/>
 
     <ScrollView
         android:background="@drawable/border"
@@ -52,7 +52,7 @@
         android:layout_weight="4">
 
         <TextView
-        android:text="Nội dung test"
+        android:text="@string/detail_of_note"
         android:textColor="#ffffff"
         android:layout_margin="5dp"
         android:id="@+id/tvDetail"
@@ -68,7 +68,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.5"
-        android:text="Vào lúc:"/>
+        android:text="@string/when_event_start"/>
 
     <LinearLayout
         android:layout_width="match_parent"

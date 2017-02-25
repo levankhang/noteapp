@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:text="Thêm ghi chú mới"
+        android:text="@string/activity_note_add"
         android:textStyle="bold"
         android:textSize="20sp"
         android:textColor="#ffffff"/>
@@ -29,7 +29,7 @@
         android:textColor="#ffffff"
         android:textSize="12sp"
         android:textStyle="bold"
-        android:text="Nhập tên ghi chú:"/>
+        android:text="@string/name_of_note"/>
 
     <EditText
         android:textColor="#fff200"
@@ -53,7 +53,7 @@
         android:textColor="#ffffff"
         android:textSize="12sp"
         android:textStyle="bold"
-        android:text="Nhập chi tiết:"/>
+        android:text="@string/detail_of_note"/>
 
     <EditText
         android:textColor="#fff200"
@@ -74,7 +74,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:textStyle="bold"
-        android:text="Thông tin về thời gian"
+        android:text="@string/when_event_start"
         android:textColor="#ffffff"
         android:textSize="12sp"
         android:gravity="center"/>
@@ -92,7 +92,7 @@
             android:layout_weight="1"
             android:textSize="12sp"
             android:layout_height="match_parent"
-            android:text="Cài đặt ngày"
+            android:text="@string/set_date"
             android:textStyle="bold"
             android:gravity="center_horizontal|bottom"/>
         <TextView
@@ -102,7 +102,7 @@
             android:textSize="12sp"
             android:textStyle="bold"
             android:layout_height="match_parent"
-            android:text="Cài đặt giờ"
+            android:text="@string/set_time"
             android:gravity="center_horizontal|bottom"/>
     </LinearLayout>
 
@@ -144,7 +144,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
-            android:text="Hoàn tất"
+            android:text="@string/finish"
             android:textColor="#ffffff"
             android:background="#00ffffff"/>
         <Button
@@ -155,7 +155,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
-            android:text="Hủy bỏ"/>
+            android:text="@string/cancel"/>
     </LinearLayout>
 
 

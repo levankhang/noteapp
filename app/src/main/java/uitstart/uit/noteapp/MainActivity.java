@@ -219,6 +219,8 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
     }
 
     private void onActionModeOn() {
+        updateCounter(counter);
+
         is_actionmenu_mode=true;
 
         toolbar.getMenu().clear();
@@ -253,7 +255,7 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
     }
 
     private void updateCounter(int counter){
-        tvCounter.setText("Đã chọn "+counter+" ghi chú");
+        tvCounter.setText(getResources().getString(R.string.count)+" "+counter);
     }
 
     @Override
@@ -291,7 +293,7 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
                             createCalendar(note_result.getDate(),note_result.getTime()).getTimeInMillis(),
                             note_result.createPendingIntent(this));
 
-                    Toast.makeText(this,"Bạn vừa thêm một ghi chú mới",Toast.LENGTH_LONG).show();
+                    Toast.makeText(this,getResources().getString(R.string.added),Toast.LENGTH_LONG).show();
                 }
 
                 if (requestCode == REQUES_UPDATE) {
@@ -306,7 +308,7 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
                     noteDataBase.updateNote(note_result);
                     adater.refreshData();
 
-                    Toast.makeText(this,"Cập nhật ghi chú thành công",Toast.LENGTH_LONG).show();
+                    Toast.makeText(this,getResources().getString(R.string.updated),Toast.LENGTH_LONG).show();
                 }
         }
     }

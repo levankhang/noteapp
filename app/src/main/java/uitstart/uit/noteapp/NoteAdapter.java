@@ -58,8 +58,8 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
 
         ArrayList<String> spinner_list=new ArrayList<>();
         spinner_list.add("");
-        spinner_list.add("Xóa ghi chú này");
-        spinner_list.add("Sửa ghi chú này");
+        spinner_list.add(context.getResources().getString(R.string.delete_action));
+        spinner_list.add(context.getResources().getString(R.string.edit_action));
         ArrayAdapter<String> spinner_adapter=new ArrayAdapter<String>(mainActivity,android.R.layout.simple_spinner_item,spinner_list){
             @Override
             public View getDropDownView(int position, View convertView, ViewGroup parent) {
