@@ -1,10 +1,9 @@
-package uitstart.uit.noteapp;
+package uitstart.uit.noteapp.activity;
 
 import android.app.AlarmManager;
 import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,14 +18,24 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.akexorcist.localizationactivity.LocalizationActivity;
+
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import uitstart.uit.noteapp.database.SettingDataBase;
+import uitstart.uit.noteapp.model.MySetting;
+import uitstart.uit.noteapp.model.Note;
+import uitstart.uit.noteapp.adapter.NoteAdapter;
+import uitstart.uit.noteapp.database.NoteDataBase;
+import uitstart.uit.noteapp.model.PublicDateTime;
+import uitstart.uit.noteapp.R;
+
 import static android.view.View.GONE;
 
-public class MainActivity extends AppCompatActivity implements View.OnLongClickListener, View.OnClickListener {
+public class MainActivity extends LocalizationActivity implements View.OnLongClickListener, View.OnClickListener {
 
     public static final int REQUES_NEWNODE=0;
     public static final int REQUES_UPDATE=1;
@@ -40,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
     private ArrayList<Note> list_selected=new ArrayList<>();
     private int counter=0;
 
-    public PublicDateTime  publicDateTime;
+    public PublicDateTime publicDateTime;
 
     private ImageView imghome, imgback;
 
@@ -49,22 +58,53 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
     public static NoteAdapter adater;
     public static NoteDataBase noteDataBase;
     public static AlarmManager alarmManager;
+    public static SettingDataBase settingDataBase;
+
+    public static String current_language_code="en";
+    public static MySetting mySetting;
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         addControls();
         setSupportActionBar(toolbar);
         initRecyclerViewNote();
         addEvents();
-        loadData();
+        loadDataNote();
+        loadDataSetting();
+
         publicDateTime =new PublicDateTime();
         alarmManager= (AlarmManager) getSystemService(ALARM_SERVICE);
+
+        resetLanguage(mySetting.getLanguage_code());
+
     }
 
-    private void loadData() {
+    private void loadDataSetting() {
+        settingDataBase=new SettingDataBase(this);
+        settingDataBase.insertSettingDefault(); // mặc định cho phép thông báo và ngôn ngữ tiếng anh
+        mySetting=settingDataBase.getMySetting();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        resetLanguage(mySetting.getLanguage_code());
+    }
+
+    public void resetLanguage(String lang) {
+
+        if(!current_language_code.equals(lang)) {
+            setLanguage(lang);
+            current_language_code=lang;
+        }
+    }
+
+
+    private void loadDataNote() {
         adater.refreshData();
     }
 
@@ -121,10 +161,12 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
     }
 
     private void openSetting() {
+        Intent intentSetting=new Intent(MainActivity.this,SettingActivity.class);
+        startActivity(intentSetting);
     }
 
     private void viewAllNote() {
-        loadData();
+        loadDataNote();
     }
 
     private void addNewNote() {

@@ -52,4 +52,13 @@
     <string name="same_time">You are got an event at this time</string>
     <string name="name_empty">Name of note not empty</string>
     <string name="detail_empty">Detail of note not empty</string>
+
+    <!--Text for SettingActivity-->
+    <string name="name_setting">Setting</string>
+    <string name="is_notification">Notification</string>
+    <string name="language">Language</string>
+
+    <!--Text for Notification-->
+    <string name="notification">Notification from Note Application</string>
+    <string name="notification_detail">Click to view infomation</string>
 </resources>

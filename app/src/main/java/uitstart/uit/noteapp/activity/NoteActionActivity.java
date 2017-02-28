@@ -1,4 +1,4 @@
-package uitstart.uit.noteapp;
+package uitstart.uit.noteapp.activity;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -12,7 +12,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.StringTokenizer;
+
+import uitstart.uit.noteapp.model.Note;
+import uitstart.uit.noteapp.model.PublicDateTime;
+import uitstart.uit.noteapp.R;
 
 public class NoteActionActivity extends AppCompatActivity implements View.OnClickListener{
 

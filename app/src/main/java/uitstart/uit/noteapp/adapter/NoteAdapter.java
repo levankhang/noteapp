@@ -1,4 +1,4 @@
-package uitstart.uit.noteapp;
+package uitstart.uit.noteapp.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.CardView;
@@ -13,6 +13,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import uitstart.uit.noteapp.R;
+import uitstart.uit.noteapp.activity.MainActivity;
+import uitstart.uit.noteapp.model.Note;
 
 import static android.view.View.GONE;
 

@@ -1,4 +1,4 @@
-package uitstart.uit.noteapp;
+package uitstart.uit.noteapp.broadcastreceiver;
 
 import android.app.AlarmManager;
 import android.content.BroadcastReceiver;
@@ -9,10 +9,15 @@ import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 
+import uitstart.uit.noteapp.activity.MainActivity;
+import uitstart.uit.noteapp.database.NoteDataBase;
+import uitstart.uit.noteapp.model.Note;
+import uitstart.uit.noteapp.model.PublicDateTime;
+
 /**
  * Created by Khang on 2/24/2017.
  */
-public class ActionBootComplete extends BroadcastReceiver {
+public class ResetAlarmAfterBoot extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         AlarmManager alarmManager= (AlarmManager) context.getApplicationContext().getSystemService(Context.ALARM_SERVICE);
@@ -25,7 +30,7 @@ public class ActionBootComplete extends BroadcastReceiver {
         Calendar calendar=Calendar.getInstance();
         Date d=null;
         try {
-            d=PublicDateTime.FORMAT_CALENDAR.parse(date+" "+time);
+            d= PublicDateTime.FORMAT_CALENDAR.parse(date+" "+time);
         } catch (ParseException e) {
             e.printStackTrace();
         }

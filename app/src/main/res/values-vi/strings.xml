@@ -52,4 +52,13 @@
     <string name="same_time">Bạn đã có sự kiện trong thời gian này</string>
     <string name="name_empty">Tên không được rỗng</string>
     <string name="detail_empty">Chi tiết không được rỗng</string>
+
+    <!--Text for SettingActivity-->
+    <string name="name_setting">Cài đặt</string>
+    <string name="is_notification">Thông báo</string>
+    <string name="language">Ngôn ngữ</string>
+
+    <!--Text for Notification-->
+    <string name="notification">Thông báo từ Ứng dụng ghi chú</string>
+    <string name="notification_detail">Chọn vào để xem chi tiết</string>
 </resources>

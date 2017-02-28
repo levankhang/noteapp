@@ -4,7 +4,7 @@
     android:id="@+id/activity_note"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="uitstart.uit.noteapp.NoteActionActivity"
+    tools:context="uitstart.uit.noteapp.activity.NoteActionActivity"
     android:orientation="vertical"
     android:background="@drawable/border"
     android:layout_weight="15"

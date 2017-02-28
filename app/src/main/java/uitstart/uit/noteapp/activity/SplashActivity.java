@@ -1,6 +1,5 @@
-package uitstart.uit.noteapp;
+package uitstart.uit.noteapp.activity;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,6 +10,8 @@ import android.os.Bundle;
 import android.view.Display;
 import android.view.WindowManager;
 import android.widget.ImageView;
+
+import uitstart.uit.noteapp.R;
 
 public class SplashActivity extends AppCompatActivity {
 

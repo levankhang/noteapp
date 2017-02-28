@@ -1,4 +1,4 @@
-package uitstart.uit.noteapp;
+package uitstart.uit.noteapp.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +7,9 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
+
+import uitstart.uit.noteapp.model.Note;
+import uitstart.uit.noteapp.R;
 
 public class ShowInfoActivity extends AppCompatActivity implements View.OnClickListener {
 

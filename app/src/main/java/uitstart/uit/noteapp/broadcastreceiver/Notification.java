@@ -1,4 +1,4 @@
-package uitstart.uit.noteapp;
+package uitstart.uit.noteapp.broadcastreceiver;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -11,13 +11,31 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 
+import uitstart.uit.noteapp.R;
+import uitstart.uit.noteapp.activity.MainActivity;
+import uitstart.uit.noteapp.activity.ShowInfoActivity;
+import uitstart.uit.noteapp.database.SettingDataBase;
+import uitstart.uit.noteapp.model.MySetting;
+import uitstart.uit.noteapp.model.Note;
+
 
 /**
  * Created by Khang on 2/24/2017.
  */
-public class BroadCastReceiver extends BroadcastReceiver {
+public class Notification extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
+
+        MainActivity.settingDataBase=new SettingDataBase(context.getApplicationContext());
+        MySetting mySetting=MainActivity.settingDataBase.getMySetting();
+
+        if(mySetting.getIs_notification()==1){{
+            makeNotification(context,intent);
+        }}
+
+    }
+
+    private void makeNotification(Context context, Intent intent) {
 
         Note n= (Note) intent.getSerializableExtra("note");
 
@@ -29,8 +47,8 @@ public class BroadCastReceiver extends BroadcastReceiver {
         //Uri uri=Uri.parse("android.resource://"+context.getPackageName()+"/"+R.raw.sound);
 
         NotificationCompat.Builder builder=new NotificationCompat.Builder(context);
-        builder.setContentTitle(n.getName());
-        builder.setContentText(n.getDetai());
+        builder.setContentTitle(context.getResources().getString(R.string.notification));
+        builder.setContentText(context.getResources().getString(R.string.notification_detail));
         builder.setSmallIcon(R.drawable.ic_notification);
         builder.setContentIntent(pendingIntentShowInfo);
         builder.setSound(uri);

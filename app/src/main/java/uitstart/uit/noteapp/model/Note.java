@@ -1,10 +1,12 @@
-package uitstart.uit.noteapp;
+package uitstart.uit.noteapp.model;
 
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 
 import java.io.Serializable;
+
+import uitstart.uit.noteapp.broadcastreceiver.Notification;
 
 /**
  * Created by Khang on 2/19/2017.
@@ -73,7 +75,7 @@ public class Note implements Serializable {
     }
 
     public PendingIntent createPendingIntent(Context context){
-        Intent intent=new Intent(context,BroadCastReceiver.class);
+        Intent intent=new Intent(context,Notification.class);
         intent.putExtra("note",this);
         return PendingIntent.getBroadcast(context,id,intent,PendingIntent.FLAG_UPDATE_CURRENT);
     }

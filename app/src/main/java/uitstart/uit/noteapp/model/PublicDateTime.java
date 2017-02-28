@@ -1,15 +1,15 @@
-package uitstart.uit.noteapp;
+package uitstart.uit.noteapp.model;
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
+
+import uitstart.uit.noteapp.activity.MainActivity;
+import uitstart.uit.noteapp.activity.NoteActionActivity;
 
 /**
  * Created by Khang on 2/19/2017.
